@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BrandScaler</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+   
+    document.addEventListener('DOMContentLoaded', function() {
+      
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      });
+      
+      // Testimonial slider functionality
+      let currentTestimonial = 0;
+      const testimonials = document.querySelectorAll('.testimonial-card');
+      const totalTestimonials = testimonials.length;
+      
+      document.getElementById('next-testimonial').addEventListener('click', function() {
+        testimonials[currentTestimonial].classList.add('hidden');
+        currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
+        testimonials[currentTestimonial].classList.remove('hidden');
+      });
+      
+      document.getElementById('prev-testimonial').addEventListener('click', function() {
+        testimonials[currentTestimonial].classList.add('hidden');
+        currentTestimonial = (currentTestimonial - 1 + totalTestimonials) % totalTestimonials;
+        testimonials[currentTestimonial].classList.remove('hidden');
+      });
+    });
+  </script>
+  <style>
+    
+    .hover-scale {
+      transition: transform 0.3s ease;
+    }
+    .hover-scale:hover {
+      transform: scale(1.05);
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in-section {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+    
+    .header-scrolled {
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+    }
+  </style>
+</head>
+<body class="bg-black font-sans">
+  <!-- Home Section -->
+  <section id="home" class="h-screen p-10 bg-cover bg-no-repeat bg-center relative" style="background-image: url('https://www.3aw.com.au/wp-content/uploads/sites/12/2022/11/3aw-image-istock-astronaut-1200x800.jpg');">
+
+    <header class="flex justify-between items-center p-6 fixed top-0 left-0 right-0 z-50 text-white transition-all duration-300" id="main-header">
+      <div class="text-yellow-400 font-bold text-2xl">BRAND <span class="text-white">SCALER</span></div>
+      <nav class="hidden md:flex gap-4">
+        <a href="#home" class="px-3 py-1 rounded-md hover:bg-yellow-400 hover:text-black transition duration-300">HOME</a>
+        <a href="#what-we-do" class="px-3 py-1 rounded-md hover:bg-yellow-400 hover:text-black transition duration-300">WHAT WE DO</a>
+        <a href="#industries" class="px-3 py-1 rounded-md hover:bg-yellow-400 hover:text-black transition duration-300">INDUSTRY</a>
+        <a href="#testimonials" class="px-3 py-1 rounded-md hover:bg-yellow-400 hover:text-black transition duration-300">TESTIMONIALS</a>
+        <a href="#contact" class="px-3 py-1 rounded-md hover:bg-yellow-400 hover:text-black transition duration-300">CONTACT US</a>
+      </nav>
+      
+      <button class="md:hidden focus:outline-none" id="mobile-menu-button">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>    
+    </header>
+    
+    
+    <div class="hidden fixed top-16 left-0 right-0 bg-black/90 text-white z-40 p-4 rounded-b-lg" id="mobile-menu">
+      <nav class="flex flex-col gap-2">
+        <a href="#home" class="px-3 py-2 hover:bg-yellow-400 hover:text-black rounded-md transition duration-300">HOME</a>
+        <a href="#what-we-do" class="px-3 py-2 hover:bg-yellow-400 hover:text-black rounded-md transition duration-300">WHAT WE DO</a>
+        <a href="#industries" class="px-3 py-2 hover:bg-yellow-400 hover:text-black rounded-md transition duration-300">INDUSTRY</a>
+        <a href="#testimonials" class="px-3 py-2 hover:bg-yellow-400 hover:text-black rounded-md transition duration-300">TESTIMONIALS</a>
+        <a href="#contact" class="px-3 py-2 hover:bg-yellow-400 hover:text-black rounded-md transition duration-300">CONTACT US</a>
+      </nav>
+    </div>
+  
+    
+    <div class="flex justify-end items-center h-full pt-16">
+      <div class="text-left text-white max-w-2xl w-full p-8 bg-black/40 backdrop-blur-sm rounded-lg fade-in-section">
+        <h1 class="text-4xl md:text-5xl font-bold">WE BELIEVE IN <br><span class="text-yellow-400">"DIGITAL PRESENCE".</span></h1>
+        <p class="mt-6 text-base text-gray-200">We are not only a creative agency but we are also trusted partners of many brands across industry.</p>
+        <button class="mt-6 bg-yellow-400 text-black font-bold py-2 px-6 rounded-md hover:bg-yellow-500 transition duration-300">GET STARTED</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- What We Do -->
+  <section id="what-we-do" class="min-h-screen bg-black text-center py-16 px-4">
+    <h1 class="text-4xl font-bold text-stone-50 mb-12"><span class="text-yellow-400">WHAT</span> WE DO</h1>
+    
+    
+    <nav class="mb-12 md:w-full bg-slate-600 text-white overflow-x-auto lg:w-[85vw] lg:mx-auto ">
+      <ul class="flex justify-around items-center py-5 uppercase whitespace-nowrap">
+        <li><a href="#" class="p-2 hover:text-black hover:bg-yellow-400 rounded-md transition duration-300 service-tab" data-service="brand">Brand Strategy</a></li>
+        <li><a href="#" class="p-2 hover:text-black hover:bg-yellow-400 rounded-md transition duration-300 service-tab" data-service="performance">Performance Marketing</a></li>
+        <li><a href="#" class="p-2 hover:text-black hover:bg-yellow-400 rounded-md transition duration-300 service-tab" data-service="content">Content Marketing</a></li>
+        <li><a href="#" class="p-2 hover:text-black hover:bg-yellow-400 rounded-md transition duration-300 service-tab" data-service="tech">Technology</a></li>
+        <li><a href="#" class="p-2 hover:text-black hover:bg-yellow-400 rounded-md transition duration-300 service-tab" data-service="ads">Google Ads</a></li>
+        <li><a href="#" class="p-2 hover:text-black hover:bg-yellow-400 rounded-md transition duration-300 service-tab" data-service="design">Graphic Design & UX</a></li>
+        <li><a href="#" class="p-2 hover:text-black hover:bg-yellow-400 rounded-md transition duration-300 service-tab" data-service="media">Paid Media Marketing</a></li>
+      </ul>
+    </nav>
+
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto text-stone-50">
+     
+      <div class="bg-gray-700/70 p-6 rounded-lg shadow-xl hover-scale border border-gray-500 group cursor-pointer transition-all duration-300 h-full">
+        <div class="flex flex-col items-center">
+          <div class="mb-4">
+            <img src="strategy.png" class="h-auto w-24 group-hover:scale-110 transition-transform duration-300">
+          </div>
+          <div class="text-center">
+            <h2 class="font-bold text-2xl mb-3 uppercase group-hover:text-yellow-400 transition-colors duration-300">Brand Strategy</h2>
+            <p class="text-gray-300">Brand begins with an analysis of perceived value in the market. We help define your unique position and messaging.</p>
+          </div>
+        </div>
+      </div>
+
+    
+      <div class="bg-gray-700/70 p-6 rounded-lg shadow-xl hover-scale border border-gray-500 group cursor-pointer transition-all duration-300 h-full">
+        <div class="flex flex-col items-center">
+          <div class="mb-4">
+            <img src="growth.png" class="h-auto w-24 group-hover:scale-110 transition-transform duration-300">
+          </div>
+          <div class="text-center">
+            <h2 class="font-bold text-2xl mb-3 uppercase group-hover:text-yellow-400 transition-colors duration-300">Performance Marketing</h2>
+            <p class="text-gray-300">Marketing in which you pay only when there are measured results. Data-driven strategies for maximum ROI.</p>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="bg-gray-700/70 p-6 rounded-lg shadow-xl hover-scale border border-gray-500 group cursor-pointer transition-all duration-300 h-full">
+        <div class="flex flex-col items-center">
+          <div class="mb-4">
+            <img src="icons8-content-marketing-64.png" class="h-auto w-24 group-hover:scale-110 transition-transform duration-300">
+          </div>
+          <div class="text-center">
+            <h2 class="font-bold text-2xl mb-3 uppercase group-hover:text-yellow-400 transition-colors duration-300">Content Marketing</h2>
+            <p class="text-gray-300">Marketing focused on creating and distributing valuable content to attract and engage your target audience.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gray-700/70 p-6 rounded-lg shadow-xl hover-scale border border-gray-500 group cursor-pointer transition-all duration-300 h-full">
+        <div class="flex flex-col items-center">
+          <div class="mb-4">
+            <img src="innovation.png" class="h-auto w-24 group-hover:scale-110 transition-transform duration-300">
+          </div>
+          <div class="text-center">
+            <h2 class="font-bold text-2xl mb-3 uppercase group-hover:text-yellow-400 transition-colors duration-300">Technology</h2>
+            <p class="text-gray-300">Technical expertise needed to keep your systems running smoothly.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gray-700/70 p-6 rounded-lg shadow-xl hover-scale border border-gray-500 group cursor-pointer transition-all duration-300 h-full">
+        <div class="flex flex-col items-center">
+          <div class="mb-4">
+            <img src="ui.png" class="h-auto w-24 group-hover:scale-110 transition-transform duration-300">
+          </div>
+          <div class="text-center">
+            <h2 class="font-bold text-2xl mb-3 uppercase group-hover:text-yellow-400 transition-colors duration-300">Graphic Design & UX</h2>
+            <p class="text-gray-300">Creative solution for a particular problem according to users.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gray-700/70 p-6 rounded-lg shadow-xl hover-scale border border-gray-500 group cursor-pointer transition-all duration-300 h-full">
+        <div class="flex flex-col items-center">
+          <div class="mb-4">
+            <img src="adwords.png" class="h-auto w-24 group-hover:scale-110 transition-transform duration-300">
+          </div>
+          <div class="text-center">
+            <h2 class="font-bold text-2xl mb-3 uppercase group-hover:text-yellow-400 transition-colors duration-300">Google Ads</h2>
+            <p class="text-gray-300">A platform where advertisers bid to display brief advertisements.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Industries we serve  -->
+  <section id="industries" class="min-h-screen py-16 px-6 bg-black">
+    <h2 class="text-4xl font-bold text-center text-white mb-12"><span class="text-yellow-400">INDUSTRIES</span> WE SERVE</h2>
+    
+    <div class="flex flex-col lg:flex-row justify-around items-center gap-8 max-w-6xl mx-auto">
+      
+      <div class="grid grid-cols-3  md:grid-cols-3 lg:flex lg:flex-col gap-1 text-gray-400 font-semibold text-center text-lg">
+        <span id="healthcare" class="industry-item p-3 cursor-pointer hover:text-yellow-400 transition-colors duration-500 hover:scale-[1.5] lg:hover:scale-[2]">Healthcare</span>
+        <span id="entertainment" class="industry-item p-3 cursor-pointer hover:text-yellow-400  transition-colors duration-500 hover:scale-[1.3] lg:hover:scale-[2]">Entertainment</span>
+        <span id="food" class="industry-item p-3 cursor-pointer hover:text-yellow-400  transition-colors duration-500 hover:scale-[1.3] lg:hover:scale-[2]">Food</span>
+        <span id="law" class="industry-item p-3 cursor-pointer hover:text-yellow-400  transition-colors duration-500 hover:scale-[1.3] lg:hover:scale-[2]">Law Firms</span>
+        <span id="education" class="industry-item p-3 cursor-pointer text-yellow-400 scale-[1.8] hover:text-yellow-400  transition-colors duration-500 hover:scale-[1.3] lg:hover:scale-[2]">Education</span>
+        <span id="retail" class="industry-item p-3 cursor-pointer hover:text-yellow-400  transition-colors duration-500 hover:scale-[1.3] lg:hover:scale-[2]">Retail Industry</span>
+        <span id="it" class="industry-item p-3 cursor-pointer hover:text-yellow-400  transition-colors duration-500 hover:scale-[1.3] lg:hover:scale-[2]">IT Firms</span>
+        <span id="e" class="industry-item p-3 cursor-pointer hover:text-yellow-400  transition-colors duration-500 hover:scale-[1.3] lg:hover:scale-[2]">E-Commerce</span>
+        <span id="real" class="industry-item p-3 cursor-pointer hover:text-yellow-400  transition-colors duration-500 hover:scale-[1.3] lg:hover:scale-[2]">Real-Estate</span>
+      </div>
+      
+      
+      <div class="flex flex-col items-center gap-2">
+        <img src="https://blogs.microsoft.com/wp-content/uploads/prod/2023/03/Exam_Room_Physician_Patient_8326_RT-scaled.jpg" 
+            id="healthcare " class="sliding-image lg:w-[500px] md:w-72 rounded-lg shadow-lg hover-scale hidden">
+        <img src="https://www.allconnect.com/wp-content/uploads/2019/08/top-5-benefits-of-using-internet-for-entertainment-hero-1125581748.jpg" 
+            id="entertainment" class="sliding-image lg:w-[500px] md:w-72 rounded-lg shadow-lg hover-scale hidden">
+        <img src="https://wallpapers.com/images/hd/food-4k-spdnpz7bhmx4kv2r.jpg" 
+        id="food" class="sliding-image lg:w-[500px] md:w-72 rounded-lg shadow-lg hover-scale hidden ">
+        <img src="https://www.eesipeo.com/media/Human-Resource-Employment-Law-Business-Law-Firms-Woodlands%E2%80%8B.jpg" id="law"
+             class="sliding-image lg:w-[500px] md:w-72 rounded-lg shadow-lg hover-scale hidden">
+        <img src="https://equalityalabama.org/wp-content/uploads/2023/11/What-are-the-Major-Equity-Issues-in-Schools-Today.jpg" id="education"
+             class="sliding-image lg:w-[500px] md:w-72  rounded-lg shadow-lg hover-scale">
+        <img src="https://knowledge-leader.colliers.com/wp-content/uploads/2022/07/KL-1024x680-3.png" id="retail "
+             class="sliding-image lg:w-[500px] md:w-72 rounded-lg shadow-lg hover-scale hidden">
+        <img src="https://aspiringgentleman.com/wp-content/uploads/2019/03/IT-Firm.jpeg" id="it "
+             class="sliding-image lg:w-[500px] md:w-72 rounded-lg shadow-lg hover-scale hidden">
+        <img src="https://woovina.com/images/2020/07/25/best-ecommerce-website-templates.jpg" id="e"
+             class="sliding-image lg:w-[500px] md:w-72 rounded-lg shadow-lg hover-scale hidden">
+        <img src="https://api.oneworld.id/uploads/Real_Estate_i_Stock_edited_aae30f2583.jpg" id="real"
+             class="sliding-image lg:w-[500px] md:w-72 rounded-lg shadow-lg hover-scale hidden">
+      </div>
+    </div>
+    
+   
+    <div class="mt-20 flex flex-wrap justify-around items-center gap-7 max-w-5xl mx-auto">
+      <img src="logo.png" class="max-h-8 opacity-70 hover:opacity-100 transition-opacity duration-300">
+      <img src="logo.png" class="max-h-8 opacity-70 hover:opacity-100 transition-opacity duration-300">
+      <img src="logo.png" class="max-h-8 opacity-70 hover:opacity-100 transition-opacity duration-300">
+      <img src="logo.png" class="max-h-8 opacity-70 hover:opacity-100 transition-opacity duration-300">
+      <img src="logo.png" class="max-h-8 opacity-70 hover:opacity-100 transition-opacity duration-300">
+    </div>
+</section>
+
+ 
+  <!-- Testimonials  -->
+  <section id="testimonials" class="min-h-screen bg-black py-16 px-6 text-center">
+    <div class="text-3xl text-slate-50 font-bold mb-12 uppercase"><span class="text-yellow-400">What</span> Clients Say</div>
+    
+    
+    <div class="relative max-w-4xl mx-auto ">
+      
+      <button id="prev-testimonial" class="absolute left-0 top-1/2 -translate-y-1/2 bg-yellow-400 text-black p-2 rounded-full z-10 hover:bg-yellow-500 transition-colors duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      
+      <button id="next-testimonial" class="absolute right-0 top-1/2 -translate-y-1/2 bg-yellow-400 text-black p-2 rounded-full z-10 hover:bg-yellow-500 transition-colors duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+      
+    
+      <div class="testimonial-container overflow-hidden px-10 min-h-[40vh] md:min-h-[50vh]">
+        <div class="testimonial-card bg-neutral-800 p-8 rounded-lg shadow-xl">
+          <svg class="w-12 h-12 text-yellow-400 mb-4 mx-auto" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path d="M464 256h-80v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8c-88.4 0-160 71.6-160 160v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48zm-288 0H96v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8C71.6 32 0 103.6 0 192v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48z"/>
+          </svg>
+          <p class="italic text-gray-300 text-lg mb-6">BrandScaler transformed our digital strategy completely. Their insight into our target audience and creative approach to content marketing drove a 45% increase in qualified leads within just three months.</p>
+          <div class="mt-4 text-yellow-400 font-bold">Sarah Johnson</div>
+          <div class="text-sm text-white">Marketing Director, TechSolutions Inc.</div>
+        </div>
+        
+        
+        <div class="testimonial-card hidden bg-neutral-800 p-8 rounded-lg shadow-xl lg:min-h-[40vh]  md:min-h-[30vh]">
+          <svg class="w-12 h-12 text-yellow-400 mb-4 mx-auto" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path d="M464 256h-80v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8c-88.4 0-160 71.6-160 160v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48zm-288 0H96v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8C71.6 32 0 103.6 0 192v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48z"/>
+          </svg>
+          <p class="italic text-gray-300 text-lg mb-6">Working with BrandScaler elevated our online presence to new heights. Their SEO strategy and content marketing approach helped us outrank major competitors in our industry.</p>
+          <div class="mt-4 text-yellow-400 font-bold">Michael Roberts</div>
+          <div class="text-sm text-white">CEO, Elevated Learning Academy</div>
+        </div>
+
+        <div class="testimonial-card hidden bg-neutral-800 p-8 rounded-lg shadow-xl lg:min-h-[40vh]  md:min-h-[30vh]">
+          <svg class="w-12 h-12 text-yellow-400 mb-4 mx-auto" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path d="M464 256h-80v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8c-88.4 0-160 71.6-160 160v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48zm-288 0H96v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8C71.6 32 0 103.6 0 192v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48z"/>
+          </svg>
+          <p class="italic text-gray-300 text-lg mb-6">The combination of empowering the people who work here and a focus on continuous improvement has resulted in an environment where it is easy to be creative and do your best work.</p>
+          <div class="mt-4 text-yellow-400 font-bold">Tom Clayton</div>
+          <div class="text-sm text-white">Manager, Rigorous Themes</div>
+        </div>
+
+        <div class="testimonial-card hidden bg-neutral-800 p-8 rounded-lg shadow-xl lg:min-h-[40vh]  md:min-h-[30vh]">
+          <svg class="w-12 h-12 text-yellow-400 mb-4 mx-auto" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path d="M464 256h-80v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8c-88.4 0-160 71.6-160 160v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48zm-288 0H96v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8C71.6 32 0 103.6 0 192v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48z"/>
+          </svg>
+          <p class="italic text-gray-300 text-lg mb-6">I can’t recommend them enough. And if you think about why we continue to work with them year after year, they continue to earn our business.</p>
+          <div class="mt-4 text-yellow-400 font-bold">Avin Kline</div>
+          <div class="text-sm text-white">Founder, ESCALE</div>
+        </div>
+
+        <div class="testimonial-card hidden bg-neutral-800 p-8 rounded-lg shadow-xllg:min-h-[40vh]  md:min-h-[30vh]">
+          <svg class="w-12 h-12 text-yellow-400 mb-4 mx-auto" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path d="M464 256h-80v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8c-88.4 0-160 71.6-160 160v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48zm-288 0H96v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8C71.6 32 0 103.6 0 192v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48z"/>
+          </svg>
+          <p class="italic text-gray-300 text-lg mb-6">In just a couple of days, we went from having just an idea with requirements, to design and having a prototype to show our investors and stakeholders. What is the best of all things? - they liked it!</p>
+          <div class="mt-4 text-yellow-400 font-bold">Cesar Ramirez</div>
+          <div class="text-sm text-white">Project Head, ReddyUp</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section id="contact" class="min-h-screen bg-cover bg-no-repeat bg-center py-16 px-6 text-white" style="background-image: url(https://wallpapercave.com/wp/wp7921335.jpg);">
+    <h2 class="text-4xl font-bold text-center mb-12"><span class="text-yellow-400">CONTACT</span> US</h2>
+    
+    <div class="max-w-5xl mx-auto">
+      <form class="grid grid-cols-1 md:grid-cols-2 gap-6 p-8 bg-black/30 backdrop-blur-md rounded-lg shadow-xl">
+        
+        <div class="relative">
+          <input type="text" placeholder="First Name" required
+                 class="w-full p-4 rounded border border-white/40 bg-white/20 backdrop-blur-md placeholder-white/70 shadow-md focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all duration-300">
+        </div>
+        
+        <div class="relative">
+          <input type="text" placeholder="Last Name" required
+                 class="w-full p-4 rounded border border-white/40 bg-white/20 backdrop-blur-md placeholder-white/70 shadow-md focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all duration-300">
+        </div>
+        
+        <div class="relative">
+          <input type="email" placeholder="Email" required
+                 class="w-full p-4 rounded border border-white/40 bg-white/20 backdrop-blur-md placeholder-white/70 shadow-md focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all duration-300">
+        </div>
+        
+        <div class="relative">
+          <input type="tel" placeholder="Phone" 
+                 class="w-full p-4 rounded border border-white/40 bg-white/20 backdrop-blur-md placeholder-white/70 shadow-md focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all duration-300">
+        </div>
+        
+        <div class="relative md:col-span-2">
+          <textarea placeholder="Message" rows="4" required
+                    class="w-full p-4 rounded border border-white/40 bg-white/20 backdrop-blur-md placeholder-white/70 shadow-md focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all duration-300"></textarea>
+        </div>
+        
+        <div class="md:col-span-2 grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-white">
+          <label class="flex items-center gap-2 cursor-pointer hover:text-yellow-400 transition-colors duration-300">
+            <input type="checkbox" class="w-4 h-4 accent-yellow-600"> 
+            <span>Graphic Design & UX</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer hover:text-yellow-400 transition-colors duration-300">
+            <input type="checkbox" class="w-4 h-4 accent-yellow-600"> 
+            <span>Performance Marketing</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer hover:text-yellow-400 transition-colors duration-300">
+            <input type="checkbox" class="w-4 h-4 accent-yellow-600"> 
+            <span>Paid Media Marketing</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer hover:text-yellow-400 transition-colors duration-300">
+            <input type="checkbox" class="w-4 h-4 accent-yellow-600"> 
+            <span>Custom</span>
+          </label>
+        </div>
+    
+        <div class="w-[80vw] flex justify-center items-center lg:w-[65vw]">
+          <button type="submit" class="md:col-span-2 bg-yellow-600 text-black font-semibold py-4 px-14 rounded hover:bg-yellow-500 transition-all duration-300 shadow-md transform hover:scale-[1.02] ">
+            SEND MESSAGE
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="bg-black text-gray-400 p-8 text-sm">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div>
+        <h3 class="text-white font-bold text-xl mb-4">BRAND SCALER</h3>
+        <p class="text-sm mb-4">We help brands scale their digital presence through strategic marketing and creative solutions. Our team of experts is dedicated to driving measurable results for your business.</p>
+        <p class="mb-2"><a href="mailto:contact@brandscaler.in" class="hover:text-yellow-400 transition-colors duration-300">contact@brandscaler.in</a></p>
+        <div class="flex space-x-6 mt-4">
+          <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors duration-300">
+            <img src="instagram-1-svgrepo-com.svg" class="w-6 h-6">
+          </a>
+          <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors duration-300">
+            <img src="facebook-svgrepo-com.svg" class="w-6 h-6">
+          </a>
+          <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors duration-300">
+            <img src="whatsapp-color-svgrepo-com.svg" class="w-6 h-6">
+          </a>
+          <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors duration-300">
+            <img src="twitter-svgrepo-com.svg" class="w-6 h-6">
+          </a>
+        </div>
+      </div>
+      
+      <div>
+        <h4 class="text-white font-bold mb-4">Explore</h4>
+        <ul class="space-y-2">
+          <li><a href="#home" class="hover:text-yellow-400 transition-colors duration-300">Home</a></li>
+          <li><a href="#what-we-do" class="hover:text-yellow-400 transition-colors duration-300">What We Do</a></li>
+          <li><a href="#industries" class="hover:text-yellow-400 transition-colors duration-300">Industries</a></li>
+          <li><a href="#testimonials" class="hover:text-yellow-400 transition-colors duration-300">Testimonials</a></li>
+          <li><a href="#contact" class="hover:text-yellow-400 transition-colors duration-300">Contact Us</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h4 class="text-white font-bold mb-4">Industries</h4>
+        <ul class="space-y-2">
+          <li><a href="#" class="hover:text-yellow-400 transition-colors duration-300">Real Estate</a></li>
+          <li><a href="#" class="hover:text-yellow-400 transition-colors duration-300">E-Commerce</a></li>
+          <li><a href="#" class="hover:text-yellow-400 transition-colors duration-300">Education</a></li>
+          <li><a href="#" class="hover:text-yellow-400 transition-colors duration-300">Healthcare</a></li>
+          <li><a href="#" class="hover:text-yellow-400 transition-colors duration-300">IT & Technology</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h4 class="text-white font-bold mb-4">Newsletter</h4>
+        <p class="mb-4">Be the first to know about our latest insights and offerings!</p>
+        <div class="flex">
+          <input type="email" placeholder="Your email" class="p-3 w-full bg-gray-800 border border-gray-700 rounded-l focus:outline-none focus:ring-1 focus:ring-yellow-400">
+          <button class="bg-yellow-600 text-black font-semibold px-4 py-2 rounded-r hover:bg-yellow-500 transition-colors duration-300">
+            SUBSCRIBE
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="text-center mt-8 pt-6 border-t border-gray-800">
+      © Copyright 2025 BrandScaler | All Rights Reserved
+    </div>
+  </footer>
+
+  
+  <script>
+    
+    document.getElementById('mobile-menu-button').addEventListener('click', function() {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+    
+    
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 50) {
+        document.getElementById('main-header').classList.add('header-scrolled');
+      } else {
+        document.getElementById('main-header').classList.remove('header-scrolled');
+      }
+    });
+    
+    
+    document.querySelectorAll('.industry-item').forEach(item => {
+      item.addEventListener('mouseover', function() {
+        document.querySelectorAll('.industry-item').forEach(i => {
+          i.classList.remove('text-yellow-400','transform-scale-[1.02]');
+          i.classList.add('text-gray-400');
+        });
+        this.classList.remove('text-gray-400');
+        this.classList.add('text-yellow-400', 'transform-scaleY-1.02');
+      });
+    });
+    
+    
+    document.querySelectorAll('.service-tab').forEach(tab => {
+      tabtab.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        document.querySelectorAll('.service-tab').forEach(t => {
+          t.classList.remove('bg-yellow-400', 'text-black');
+        });
+        
+        this.classList.add('bg-yellow-400', 'text-black');
+        
+        
+        const service = this.getAttribute('data-service');
+        console.log(`Selected service: ${service}`);
+        
+      });
+    });
+    
+   
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in-section');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+    const industryItems = document.querySelectorAll(".industry-item");
+    const images = document.querySelectorAll(".sliding-image");
+
+    industryItems.forEach(item => {
+      item.addEventListener("click", () => {
+        const selectedId = item.id.trim(); // get the clicked item's ID
+
+        // Hide all images
+        images.forEach(img => {
+          img.classList.add("hidden");
+        });
+
+        // Show the image that matches the clicked item's ID
+        const selectedImage = document.querySelector(`.sliding-image#${CSS.escape(selectedId)}`);
+        if (selectedImage) {
+          selectedImage.classList.remove("hidden");
+        }
+      });
+    });
+  });
+  
+  </script>
+</body>
+</html>
